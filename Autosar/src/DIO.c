@@ -1,10 +1,25 @@
+/*
+* File: Dio.c
+* Author: Tran Nhat Thai
+* Date: 29/02/2024
+* Description: Source file for Dio.h containing implementation of GPIO (Digital Input/Output) operations.
+*/
+
+
 #include "DIO.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
 #include <stddef.h>
 
 
-/* Function to read the state of a channel */
+/*
+* Function: Dio_ReadChannel
+* Description: Reads the state of a specific channel
+* Input:
+*   ChannelId - Identifier of the channel to read
+* Output:
+*   Returns the state of the specified channel (STD_HIGH or STD_LOW)
+*/
 Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
 {
     Dio_LevelType channel_state = STD_LOW;  /* Default channel state is LOW */
@@ -26,7 +41,14 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)
     return channel_state;
 }
 
-/* Function to write a value to a channel */
+/*
+* Function: Dio_WriteChannel
+* Description: Writes the state (HIGH or LOW) to a specified channel.
+* Input:
+*   - ChannelId: The ID of the channel to be written.
+*   - Level: The desired state (STD_HIGH or STD_LOW) to be set on the channel.
+* Output: None
+*/
 void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
 {
     if (ChannelId < 16) {
@@ -44,7 +66,15 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId, Dio_LevelType Level)
     }
 }
 
-/* Function to read the state of a channel group */
+/*
+* Function: Dio_ReadChannelGroup
+* Description: Reads the state of a group of channels specified by the given ChannelGroupIdPtr.
+* Input:
+*   - ChannelGroupIdPtr: Pointer to a structure containing the port ID and channel mask.
+* Output:
+*   - Returns the state of the specified channel group.
+*/
+
 Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr)
 {
     Dio_PortLevelType port_state = 0;  /* Initialize port state to 0 */
@@ -70,7 +100,17 @@ Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType* ChannelGroupI
     return port_state;  /* Return the state of the port */
 }
 
+
 /* Function to write a value to a channel group */
+/*
+* Function: Dio_WriteChannelGroup
+* Description: Writes the specified level to the group of channels indicated by the given ChannelGroupIdPtr.
+* Input:
+*   - ChannelGroupIdPtr: Pointer to a structure containing the port ID and channel mask.
+*   - Level: The level to be written to the specified channels.
+* Output:
+*   - None
+*/
 void Dio_WriteChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr, Dio_PortLevelType Level)
 {
     if (ChannelGroupIdPtr != NULL)
@@ -92,7 +132,15 @@ void Dio_WriteChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr, Dio_Po
     }
 }
 
-/* Function to get version information of the Dio module */
+
+/*
+* Function: Dio_GetVersionInfo
+* Description: Retrieves the version information of the Dio module and stores it in the provided VersionInfo structure.
+* Input:
+*   - VersionInfo: Pointer to a structure where the version information will be stored.
+* Output:
+*   - None
+*/
 void Dio_GetVersionInfo(Std_VersionInfoType* VersionInfo)
 {
     if (VersionInfo != NULL)
@@ -106,7 +154,15 @@ void Dio_GetVersionInfo(Std_VersionInfoType* VersionInfo)
     }
 }
 
-/* Function to toggle the state of a channel */
+/*
+* Function: Dio_FlipChannel
+* Description: Toggles the state of the specified channel (i.e., flips the channel's logic level).
+* Input:
+*   - ChannelId: Identifier of the channel whose state will be toggled.
+* Output:
+*   - Returns the new state of the channel after toggling (STD_HIGH or STD_LOW).
+*/
+
 Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)
 {
     Dio_LevelType channel_state = Dio_ReadChannel(ChannelId);  /* Read current state of channel */
@@ -124,7 +180,15 @@ Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)
     }
 }
 
-/* Function to write a value to a port, changing only the channels specified by a mask */
+/*
+* Function: Dio_MaskedWritePort
+* Description: Writes the specified value to the specified port, while preserving the state of only the channels specified by the mask.
+* Input:
+*   - PortId: Identifier of the port to write to (e.g., GPIOA_BASE, GPIOB_BASE).
+*   - Level: The value to write to the port.
+*   - Mask: A bitmask indicating which channels' states should be preserved while writing the new value.
+* Output: None
+*/
 void Dio_MaskedWritePort(Dio_PortType PortId, Dio_PortLevelType Level, Dio_PortLevelType Mask)
 {
     switch(PortId)
@@ -137,8 +201,6 @@ void Dio_MaskedWritePort(Dio_PortType PortId, Dio_PortLevelType Level, Dio_PortL
             break;
         // Add other cases for other ports if needed
         default:
-            // Handle the case if PortId is invalid
-            // For example: do nothing or report an error
             break;
     }
 }

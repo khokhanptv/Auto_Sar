@@ -1,4 +1,4 @@
-.\objects\dio.o: DIO.c
+.\objects\dio.o: src\Dio.c
 .\objects\dio.o: .\inc\DIO.h
 .\objects\dio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\dio.o: .\STM32F4xx_DSP_StdPeriph_Lib_V1.9.0\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h

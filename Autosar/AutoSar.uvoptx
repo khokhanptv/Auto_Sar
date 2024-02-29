@@ -280,8 +280,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\inc\spi.h</PathWithFileName>
-      <FilenameWithoutPath>spi.h</FilenameWithoutPath>
+      <PathWithFileName>.\inc\stm32f4xx_conf.h</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_conf.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -292,8 +292,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\inc\stm32f4xx_conf.h</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_conf.h</FilenameWithoutPath>
+      <PathWithFileName>.\inc\Dio.h</PathWithFileName>
+      <FilenameWithoutPath>Dio.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -304,8 +304,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\inc\DIO.h</PathWithFileName>
-      <FilenameWithoutPath>DIO.h</FilenameWithoutPath>
+      <PathWithFileName>.\inc\Spi.h</PathWithFileName>
+      <FilenameWithoutPath>Spi.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -348,8 +348,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\spi.c</PathWithFileName>
-      <FilenameWithoutPath>spi.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\Dio.c</PathWithFileName>
+      <FilenameWithoutPath>Dio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -360,8 +360,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\DIO.c</PathWithFileName>
-      <FilenameWithoutPath>DIO.c</FilenameWithoutPath>
+      <PathWithFileName>.\src\Spi.c</PathWithFileName>
+      <FilenameWithoutPath>Spi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

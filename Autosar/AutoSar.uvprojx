@@ -417,19 +417,19 @@
           <GroupName>inc</GroupName>
           <Files>
             <File>
-              <FileName>spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\inc\spi.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\stm32f4xx_conf.h</FilePath>
             </File>
             <File>
-              <FileName>DIO.h</FileName>
+              <FileName>Dio.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\inc\DIO.h</FilePath>
+              <FilePath>.\inc\Dio.h</FilePath>
+            </File>
+            <File>
+              <FileName>Spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\Spi.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -447,14 +447,14 @@
               <FilePath>.\src\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>spi.c</FileName>
+              <FileName>Dio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\spi.c</FilePath>
+              <FilePath>.\src\Dio.c</FilePath>
             </File>
             <File>
-              <FileName>DIO.c</FileName>
+              <FileName>Spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\DIO.c</FilePath>
+              <FilePath>.\src\Spi.c</FilePath>
             </File>
           </Files>
         </Group>

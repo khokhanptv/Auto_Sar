@@ -1,3 +1,10 @@
+/*
+* File: main.c
+* Author: Tran Nhat Thai
+* Date:29/02/2024
+* Description: Main program file for testing SPI and DIO functionality.
+*/
+
 #include "DIO.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
@@ -5,7 +12,7 @@
 #include "stdio.h"
 
 
-
+ 
 
 int main(void)
 {
@@ -17,6 +24,7 @@ int main(void)
   
     // Initialize SPI configuration and other necessary variables
     Spi_ConfigType spiConfig;
+		Std_ReturnType initStatus = Spi_Init(&spiConfig);
     // Configure spiConfig appropriately
     
     // Prepare data for transmission
@@ -44,21 +52,29 @@ int main(void)
 			
 				/* CODE SPI*/
 				// Perform data transmission and reception
-        if (Spi_SetupEB(&spiConfig, txData, rxData, sizeof(txData)) != E_OK) {
-						// Handle error if transmission fails
+        Std_ReturnType txStatus = Spi_SetupEB(&spiConfig, txData, rxData, sizeof(txData));
+        if (txStatus != E_OK) {
+            // Handle error if transmission fails
+            printf("Error: Data transmission failed! Error code: %d\n", txStatus);
+            // You can add additional error handling code here if needed
+        } else {
+            // Wait for transmission and reception to complete
+            while (Spi_GetJobResult() != E_OK) {
+                // Wait or perform other tasks while waiting
+            }
+
+            // Process the received data if needed
+            printf("Received data: ");
+            for (int i = 0; i < sizeof(rxData); ++i) {
+                printf("%02X ", rxData[i]);
+            }
+            printf("\n");
         }
-        // Wait for transmission and reception to complete
-        while (Spi_GetJobResult() != E_OK) {
-	 
-        }
-				// Process the received data if needed
-				printf("Received data: ");
-				for (int i = 0; i < sizeof(rxData); ++i) {
-							printf("%02X ", rxData[i]);
-				}
-				printf("\n");
-				for(int i = 0; i < 1000000; i++);  // Delay
-			
-			
+
+        // Add delay or perform other operations before transmitting next data
+        for(int i = 0; i < 1000000; i++);  // Delay
     }
+			
+			
+    
 }

@@ -1,7 +1,24 @@
-#include "SPI.h"
+/*
+* File: Spi.c
+* Author: Tran Nhat Thai
+* Date: 29/02/2024
+* Description: Source file for Spi.h containing implementation of SPI (Serial Peripheral Interface) operations.
+*/
 
-// Function to initialize SPI with the provided configuration
+#include "Spi.h"
+
+/*
+* Function: Spi_Init
+* Description: Initializes the SPI peripheral with the provided configuration.
+* Input:
+*   - ConfigPtr: Pointer to the configuration structure containing SPI settings.
+* Output:
+*   - E_OK: If initialization is successful.
+*   - E_NOT_OK: If the configuration pointer is NULL.
+*/
+
 Std_ReturnType Spi_Init(const Spi_ConfigType* ConfigPtr) {
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
     // Check if the configuration pointer is valid
     if (ConfigPtr == NULL) {
         return E_NOT_OK; // Return error code if the pointer is NULL
@@ -27,7 +44,14 @@ Std_ReturnType Spi_Init(const Spi_ConfigType* ConfigPtr) {
 
 
 
-// Function to deinitialize SPI
+/*
+* Function: Spi_DeInit
+* Description: Deinitializes the SPI peripheral.
+* Input: None
+* Output:
+*   - E_OK: If deinitialization is successful.
+*/
+
 Std_ReturnType Spi_DeInit(void) {
     // Deinitialize SPI peripheral
     SPI_DeInit(SPI1);
@@ -35,7 +59,16 @@ Std_ReturnType Spi_DeInit(void) {
     return E_OK;
 }
 
-// Function to write data to SPI
+/*
+* Function: Spi_WriteIB
+* Description: Writes data to the SPI peripheral using interrupt-based transmission.
+* Input:
+*   - DataBufferPtr: Pointer to the data buffer containing the data to be transmitted.
+* Output:
+*   - E_OK: If data transmission is successful.
+*   - E_NOT_OK: If the data buffer pointer is NULL.
+*/
+
 Std_ReturnType Spi_WriteIB(const uint8_t* DataBufferPtr) {
     // Check if the data buffer pointer is valid
     if (DataBufferPtr == NULL) {
@@ -52,7 +85,19 @@ Std_ReturnType Spi_WriteIB(const uint8_t* DataBufferPtr) {
     return E_OK;
 }
 
-// Function to setup SPI with enabled buffering
+/*
+* Function: Spi_SetupEB
+* Description: Sets up SPI for transmission and reception using interrupt-based communication.
+* Input:
+*   - ConfigPtr: Pointer to the SPI configuration structure.
+*   - SrcDataBufferPtr: Pointer to the source data buffer containing the data to be transmitted.
+*   - DesDataBufferPtr: Pointer to the destination data buffer to store the received data.
+*   - Length: Length of the data to be transmitted and received.
+* Output:
+*   - E_OK: If data transmission and reception are successful.
+*   - E_NOT_OK: If any of the pointers is NULL or if data transmission fails.
+*/
+
 Std_ReturnType Spi_SetupEB(const Spi_ConfigType* ConfigPtr, const uint8_t* SrcDataBufferPtr, uint8_t* DesDataBufferPtr, uint16_t Length) {
     // Check if any of the pointers is NULL
     if (ConfigPtr == NULL || SrcDataBufferPtr == NULL || DesDataBufferPtr == NULL) {
@@ -82,7 +127,15 @@ Std_ReturnType Spi_SetupEB(const Spi_ConfigType* ConfigPtr, const uint8_t* SrcDa
     return E_OK;
 }
 
-// Function to get the status of SPI
+/*
+* Function: Spi_GetStatus
+* Description: Checks the status of SPI.
+* Input: None
+* Output:
+*   - E_OK: If SPI is not busy.
+*   - E_NOT_OK: If SPI is busy.
+*/
+
 Std_ReturnType Spi_GetStatus(void) {
     // Check the status of SPI
     if (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) {
@@ -108,7 +161,17 @@ void Spi_GetVersionInfo(Std_VersionInfoType* VersionInfo) {
 */
 
 
-// Function to perform synchronous data transmission via SPI
+
+/*
+* Function: Spi_SyncTransmit
+* Description: Performs synchronous data transmission according to the specified sequence.
+* Input:
+*   - Sequence: The sequence of data transmission and reception.
+* Output:
+*   - E_OK: If the transmission process is completed successfully.
+*   - E_NOT_OK: If the sequence is invalid.
+
+*/
 Std_ReturnType Spi_SyncTransmit(const Spi_SequenceType Sequence) {
     // Check the validity of the sequence
     if (Sequence >= NUM_OF_SEQUENCES) {
@@ -122,7 +185,18 @@ Std_ReturnType Spi_SyncTransmit(const Spi_SequenceType Sequence) {
     return E_OK;
 }
 
-// Function to cancel data transmission or reception of SPI
+
+
+/*
+* Function: Spi_Cancel
+* Description: Cancels data transmission or reception for the specified sequence.
+* Input:
+*   - Sequence: The sequence of data transmission or reception to be cancelled.
+* Output:
+*   - E_OK: If the cancellation process is completed successfully.
+*   - E_NOT_OK: If the sequence is invalid.
+*/
+
 Std_ReturnType Spi_Cancel(Spi_SequenceType Sequence) {
     // Perform cancellation of data transmission or reception for the specified sequence
     
@@ -138,7 +212,19 @@ Std_ReturnType Spi_Cancel(Spi_SequenceType Sequence) {
     }
 }
 
-// Function to set asynchronous mode of operation for SPI
+
+
+/*
+* Function: Spi_SetAsyncMode
+* Description: Sets asynchronous mode of operation for the specified SPI hardware unit.
+* Input:
+*   - HWUnit: The SPI hardware unit for which asynchronous mode is to be set.
+*   - Mode: The asynchronous mode to be set (SPI_POLLING_MODE, SPI_INTERRUPT_MODE, or SPI_DMA_MODE).
+* Output:
+*   - E_OK: If the asynchronous mode is set successfully.
+*   - E_NOT_OK: If the hardware unit or mode is invalid.
+*/
+
 Std_ReturnType Spi_SetAsyncMode(Spi_HWUnitType HWUnit, Spi_AsyncModeType Mode) {
     // Set asynchronous mode of operation for the specified SPI hardware unit
     
@@ -154,7 +240,14 @@ Std_ReturnType Spi_SetAsyncMode(Spi_HWUnitType HWUnit, Spi_AsyncModeType Mode) {
     }
 }
 
-// Define a function to get the results of an SPI  
+/*
+* Function: Spi_GetJobResult
+* Description: Checks the state of the SPI to determine the result of the job.
+* Input: None
+* Output:
+*   - E_OK: If the SPI job is completed successfully.
+*   - E_NOT_OK: If the SPI job is still ongoing.
+*/
 Std_ReturnType Spi_GetJobResult(void) {
     // Check the state of the SPI to determine the result
     if (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == RESET) {

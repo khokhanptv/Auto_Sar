@@ -1,5 +1,5 @@
-.\objects\spi.o: src\spi.c
-.\objects\spi.o: .\inc\SPI.h
+.\objects\spi.o: src\Spi.c
+.\objects\spi.o: .\inc\Spi.h
 .\objects\spi.o: .\STM32F4xx_DSP_StdPeriph_Lib_V1.9.0\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\spi.o: .\STM32F4xx_DSP_StdPeriph_Lib_V1.9.0\Libraries\CMSIS\Include\core_cm4.h
 .\objects\spi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

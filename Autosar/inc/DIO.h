@@ -1,3 +1,10 @@
+/*
+* File: Dio.h
+* Author: Tran Nhat Thai
+* Date: 29/02/2024
+* Description:  Header file for Digital Input/Output (DIO) operations, including GPIO 
+configurations and functions for controlling individual channels, channel groups, and ports. 
+*/
 #ifndef DIO_H_
 #define DIO_H_
 

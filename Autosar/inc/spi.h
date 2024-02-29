@@ -1,16 +1,28 @@
- #ifndef SPI_H
+/*
+File: Spi.h
+Author: Tran Nhat Thai
+Date: 29/02/2024
+Description: Header file for SPI (Serial Peripheral Interface) operations, including initialization, 
+data transmission, and configuration.
+*/
+
+
+
+
+#ifndef SPI_H
 #define SPI_H
 
 #include "stm32f4xx.h"
 #include <stddef.h>
 
 // Vendor and module identification information
+/*
 #define VENDOR_ID          0x1234 // Vendor ID
 #define MODULE_ID          0xABCD // Module ID
 #define SW_MAJOR_VERSION   1      // Software major version
 #define SW_MINOR_VERSION   0      // Software minor version
 #define SW_PATCH_VERSION   0      // Software patch version
-
+*/
 // Number of SPI sequences
 #define NUM_OF_SPI_SEQUENCES 5
 
